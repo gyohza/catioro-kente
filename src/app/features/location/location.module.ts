@@ -4,8 +4,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
-import { LocationComponent } from './component/location.component';
+import { LocationComponent } from './location-list/location-list.component';
 import { LocationService } from './service/location.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 
 
@@ -18,6 +19,7 @@ import { LocationService } from './service/location.service';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatProgressSpinnerModule,
     RouterModule.forChild([
       { path: 'locations', component: LocationComponent },
     ]),

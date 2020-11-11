@@ -11,7 +11,9 @@ export class IncidentService {
 
   constructor(private http: HttpClient) { }
 
-  getIncidents(): Observable<LaraResource<Incident>> {
-    return this.http.get<LaraResource<Incident>>(`incidents`);
+  getIncidents(params: object = {}): Observable<LaraResource<Incident>> {
+    return this.http.get<LaraResource<Incident>>(
+      `incidents?${new URLSearchParams(Object.entries(params))}`
+    );
   }
 }

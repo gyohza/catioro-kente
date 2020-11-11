@@ -11,7 +11,9 @@ export class LocationService {
 
   constructor(private http: HttpClient) { }
 
-  getLocations(): Observable<any> {
-    return this.http.get<LaraResource<Location>>(`locations`);
+  getLocations(params: object = {}): Observable<any> {
+    return this.http.get<LaraResource<Location>>(
+      `locations?${new URLSearchParams(Object.entries(params))}`
+    );
   }
 }

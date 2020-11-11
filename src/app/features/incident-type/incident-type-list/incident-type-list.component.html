@@ -1,4 +1,4 @@
-<div class="mat-elevation-z8">
+<div class="mat-elevation-z8" [hidden]="!res">
   <table mat-table class="full-width-table" matSort aria-label="Elements">
     <!-- Id Column -->
     <ng-container matColumnDef="id">
@@ -17,9 +17,11 @@
   </table>
 
   <mat-paginator #paginator
-      [length]="dataSource?.data.length"
-      [pageIndex]="0"
-      [pageSize]="50"
-      [pageSizeOptions]="[25, 50, 100, 250]">
+    *ngIf="res"
+    (page)="getIncidentTypes($event.pageIndex + 1)"
+    [length]="res.meta.total"
+    [pageIndex]="res.meta.current_page - 1"
+    [pageSize]="res.meta.per_page">
   </mat-paginator>
 </div>
+<mat-spinner *ngIf="!res"></mat-spinner>

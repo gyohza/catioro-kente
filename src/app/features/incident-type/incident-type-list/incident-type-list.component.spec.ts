@@ -4,15 +4,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 
-import { LocationComponent } from './location.component';
+import { IncidentTypeComponent } from './incident-type-list.component';
 
-describe('LocationComponent', () => {
-  let component: LocationComponent;
-  let fixture: ComponentFixture<LocationComponent>;
+describe('IncidentTypeComponent', () => {
+  let component: IncidentTypeComponent;
+  let fixture: ComponentFixture<IncidentTypeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LocationComponent ],
+      declarations: [ IncidentTypeComponent ],
       imports: [
         NoopAnimationsModule,
         MatPaginatorModule,
@@ -23,7 +23,7 @@ describe('LocationComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LocationComponent);
+    fixture = TestBed.createComponent(IncidentTypeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

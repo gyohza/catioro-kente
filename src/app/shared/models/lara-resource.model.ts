@@ -15,9 +15,9 @@ export class LaraResource<T> {
       label: number;
       active: boolean;
     }[];
+    path: URL;
+    per_page: number;
+    to: number;
+    total: number;
   };
-  path: URL;
-  per_page: number;
-  to: number;
-  total: number;
 }
