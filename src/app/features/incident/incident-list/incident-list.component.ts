@@ -22,7 +22,6 @@ export class IncidentListComponent implements AfterViewInit, OnInit {
   displayedColumns = [
     'id',
     'incident_type',
-    'description',
     'location',
     'severity',
     'occurrence_date',
@@ -33,8 +32,10 @@ export class IncidentListComponent implements AfterViewInit, OnInit {
   getIncidents(page: number = 1) {
     this.res = null;
     this.svc.getIncidents({page}).subscribe(res => {
-      this.res = res;
-      this.dataSource.data = res.data;
+      this.res = res; console.log(res);
+      this.dataSource.data = res.data.map(
+        v => Object.assign(new Incident(), v)
+      );
     });
   }
 
