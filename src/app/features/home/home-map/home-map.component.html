@@ -1,0 +1,26 @@
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<agm-map *ngIf="!isLoading"
+  [latitude]="midpoint[0]"
+  [longitude]="midpoint[1]"
+  [zoom]="1"
+>
+  <agm-marker *ngFor="let i of incidentList"
+    [latitude]="i.location.latitude"
+    [longitude]="i.location.longitude"
+    [label]="i.incident_type.description"
+  >
+    <agm-info-window>
+      <div style="color: black;">
+        <h3>
+          [{{ i.severity }}] {{ i.incident_type.description }}
+        </h3>
+        <h4>
+          {{ i.location.description }}, {{ i.occurrence_time }}
+        </h4>
+        <p>
+          {{ i.description }}
+        </p>
+      </div>
+    </agm-info-window>
+  </agm-marker>
+</agm-map>
