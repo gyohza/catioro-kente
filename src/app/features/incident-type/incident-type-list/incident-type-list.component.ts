@@ -16,7 +16,7 @@ export class IncidentTypeComponent implements AfterViewInit, OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<IncidentType>;
   dataSource: MatTableDataSource<IncidentType>;
-  res: LaraResource<IncidentType>;
+  res: LaraResource<IncidentType[]>;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['id', 'description'];

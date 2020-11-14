@@ -1,0 +1,107 @@
+<form [formGroup]="form" novalidate (ngSubmit)="onSubmit()"
+  autocomplete="off"
+>
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>
+        {{data.id ? 'Incidente #' + data.id : 'Cadastrar incidente'}}
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Tipo de incidente" formControlName="incident_type">
+              <mat-option *ngFor="let type of incidentTypeList" [value]="type.id">
+                {{ type.description }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.controls['incident_type'].hasError('required')">
+              Tipo de incidente é <strong>obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input type="text"
+              #locationInput
+              placeholder="Localização"
+              formControlName="location"
+              matInput
+              [matAutocomplete]="locationAuto"
+              (focus)="locationInput.select()"
+              (click)="locationInput.select()"
+              (keyup)="getLocations({ delay: 0, search: locationInput.value })"
+            >
+            <mat-autocomplete #locationAuto [displayWith]="selectedLocation">
+              <mat-option diameter="25" *ngIf="!locationList">
+                <mat-progress-bar mode="query"></mat-progress-bar>
+              </mat-option>
+              <mat-option *ngFor="let location of locationList" [value]="location">
+                {{ location.description }}
+              </mat-option>
+            </mat-autocomplete>
+            <mat-error *ngIf="form.controls['location'].hasError('required')">
+              Localização é <strong>obrigatória</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Gravidade" formControlName="severity">
+              <mat-option *ngFor="let lv of severityLevelList" [value]="lv[0]">
+                {{ lv[1] }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.controls['severity'].hasError('required')">
+              Gravidade é <strong>obrigatória</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-label>Selecione uma data</mat-label>
+            <input matInput [matDatepicker]="picker"
+              formControlName="occurrence_time"
+            >
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="form.controls['occurrence_time'].hasError('required')">
+              Data de ocorrência é <strong>obrigatória</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea matInput 
+              cdkTextareaAutosize
+              placeholder="Descrição da ocorrência"
+              formControlName="description"
+            ></textarea>
+            <mat-error *ngIf="form.controls['description'].hasError('required')">
+              Descrição da ocorrência é <strong>obrigatória</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="secondary" type="button"
+        (click)="closeSelf()"
+      >Cancelar</button>
+      <button mat-raised-button color="primary" type="submit"
+        [ngStyle]="{ 'float': 'right' }"
+      >
+        Salvar
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

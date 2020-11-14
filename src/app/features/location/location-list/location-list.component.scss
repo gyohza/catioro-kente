@@ -1,3 +1,20 @@
+.mat-elevation-z8 {
+  position: absolute;
+  height: calc(100% - 56px);
+  overflow-y: auto;
+}
+
+mat-header-row {
+  position: sticky;
+  top: 0px;
+  z-index: 100;
+}
+
 .full-width-table {
   width: 100%;
+}
+
+#bottom-section {
+  position: sticky;
+  bottom: 0px;
 }

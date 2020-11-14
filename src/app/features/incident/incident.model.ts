@@ -1,24 +1,25 @@
 import { IncidentType } from '../incident-type/incident-type.model';
 import { Location } from '../location/location.model';
 
-class SeverityLevels {
-  static least_concern = 'Pouco preocupante';
-  static imminent_threat = 'Ameaça iminente';
-  static acute = 'Urgente';
-  static critical = 'Crítica';
-  static catastrophe = 'Catástrofe';
-}
-
 export class Incident {
   id: number;
   incident_type: IncidentType;
   location: Location;
-  private _severity: keyof SeverityLevels;
+  static SEVERITY_LEVELS = {
+    least_concern: 'Pouco preocupante',
+    imminent_threat: 'Ameaça iminente',
+    acute: 'Urgente',
+    critical: 'Crítica',
+    catastrophe: 'Catástrofe',
+  }
+  private _severity: string;
   set severity(val) {
-    this._severity = val;
+    if (Object.keys(Incident.SEVERITY_LEVELS).includes(val))
+      this._severity = val;
   }
   get severity() {
-    return SeverityLevels[this._severity];
+    return Incident.SEVERITY_LEVELS[this._severity];
   }
   occurrence_time: Date;
+  description: string;
 }
