@@ -1,7 +1,7 @@
 <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()"
   autocomplete="off"
 >
-  <mat-card class="shipping-card">
+  <mat-card>
     <mat-card-header>
       <mat-card-title>
         {{data.id ? 'Incidente #' + data.id : 'Cadastrar incidente'}}
@@ -85,6 +85,8 @@
               cdkTextareaAutosize
               placeholder="Descrição da ocorrência"
               formControlName="description"
+              #description
+              (focus)="description.select()"
             ></textarea>
             <mat-error *ngIf="form.controls['description'].hasError('required')">
               Descrição da ocorrência é <strong>obrigatória</strong>

@@ -16,4 +16,28 @@ export class IncidentTypeService {
       `incident-types?${new URLSearchParams(Object.entries(params))}`
     );
   }
+
+  getIncidentType(id: number): Observable<LaraResource<IncidentType>> {
+    return this.http.get<LaraResource<IncidentType>>(
+      `incident-types/${id}`
+    );
+  }
+
+  setIncidentType(params: object = {}): Observable<LaraResource<IncidentType>> {
+    return this.http.post<LaraResource<IncidentType>>(
+      `incident-types`, params
+    );
+  }
+
+  resetIncidentType(id: number, params: object = {}): Observable<LaraResource<IncidentType>> {
+    return this.http.put<LaraResource<IncidentType>>(
+      `incident-types/${id}`, params
+    );
+  }
+
+  unsetIncidentType(id: number): Observable<LaraResource<IncidentType>> {
+    return this.http.delete<LaraResource<IncidentType>>(
+      `incident-types/${id}`
+    );
+  }
 }

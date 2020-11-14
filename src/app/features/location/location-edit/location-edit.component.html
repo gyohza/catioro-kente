@@ -1,7 +1,7 @@
 <form [formGroup]="form" novalidate (ngSubmit)="onSubmit()"
   autocomplete="off"
 >
-  <mat-card class="shipping-card">
+  <mat-card>
     <mat-card-header>
       <mat-card-title>
         {{data.id ? 'Localização #' + data.id : 'Cadastrar localização'}}
@@ -15,6 +15,8 @@
               cdkTextareaAutosize
               placeholder="Descrição do local"
               formControlName="description"
+              #description
+              (focus)="description.select()"
             ></textarea>
             <mat-error *ngIf="form.controls['description'].hasError('required')">
               Descrição do local é <strong>obrigatória</strong>
@@ -58,6 +60,8 @@
             <input matInput 
               placeholder="CEP"
               formControlName="zipcode"
+              #zipcode
+              (focus)="zipcode.select()"
             />
           </mat-form-field>
         </div>

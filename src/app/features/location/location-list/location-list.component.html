@@ -1,5 +1,9 @@
-<div class="mat-elevation-z8" [hidden]="isLoading && !res">
-  <table mat-table class="full-width-table" matSort aria-label="Elements">
+<div
+  class="mat-elevation-z8"
+  [hidden]="isLoading && !res"
+  [ngClass]="{ 'disabled': isLoading }"
+>
+  <table mat-table class="full-width-table" aria-label="Elements">
     <!-- Description Column -->
     <ng-container matColumnDef="description">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Descrição</mat-header-cell>

@@ -1,4 +1,8 @@
-<div class="mat-elevation-z8" [hidden]="isLoading && !res">
+<div
+  class="mat-elevation-z8"
+  [hidden]="isLoading && !res"
+  [ngClass]="{ 'disabled': isLoading }"
+>
   <table mat-table class="full-width-table" aria-label="Elements">
     <!-- Incident Type Column -->
     <ng-container matColumnDef="incident_type">
