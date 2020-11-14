@@ -1,12 +1,12 @@
 export class LaraResource<T> {
-  data: T[];
-  links: {
+  data: T;
+  links?: {
     first: URL;
     last: URL;
     prev: URL;
     next: URL;
   };
-  meta: {
+  meta?: {
     current_page: number;
     from: number;
     last_page: number;

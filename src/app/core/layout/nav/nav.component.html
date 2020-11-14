@@ -5,9 +5,21 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar [routerLink]="['']" style="cursor: pointer;">Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item [routerLink]="['/incidents']">Incidentes</a>
-      <a mat-list-item [routerLink]="['/locations']">Localizações</a>
-      <a mat-list-item [routerLink]="['/incident-types']">Tipos de Incidentes</a>
+      <a
+        mat-list-item
+        [routerLink]="['/incidents']"
+        [routerLinkActive]="['mat-flat-button', 'mat-primary']"
+      >Incidentes</a>
+      <a
+        mat-list-item
+        [routerLink]="['/locations']"
+        [routerLinkActive]="['mat-flat-button', 'mat-primary']"
+      >Localizações</a>
+      <a
+        mat-list-item
+        [routerLink]="['/incident-types']"
+        [routerLinkActive]="['mat-flat-button', 'mat-primary']"
+      >Tipos de Incidentes</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -20,7 +32,7 @@
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>canopy-app</span>
+      <span>Canopy Project</span>
     </mat-toolbar>
     <!-- Add Content Here -->
     <ng-content></ng-content>

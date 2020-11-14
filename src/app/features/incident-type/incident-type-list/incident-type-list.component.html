@@ -1,27 +1,51 @@
-<div class="mat-elevation-z8" [hidden]="!res">
-  <table mat-table class="full-width-table" matSort aria-label="Elements">
-    <!-- Id Column -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
-      <td mat-cell *matCellDef="let row">{{row.id}}</td>
-    </ng-container>
-
+<div
+  class="mat-elevation-z8"
+  [hidden]="isLoading && !res"
+  [ngClass]="{ 'disabled': isLoading }"
+>
+  <table mat-table class="full-width-table" aria-label="Elements">
     <!-- Description Column -->
     <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Descrição</th>
-      <td mat-cell *matCellDef="let row">{{row.description}}</td>
+      <mat-header-cell *matHeaderCellDef>Descrição</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{row.description}}</mat-cell>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <!-- Delete Column -->
+    <ng-container matColumnDef="delete">
+      <mat-header-cell *matHeaderCellDef [ngStyle]="{ 'max-width': '50px' }">
+        <button mat-raised-button color="primary" type="button"
+          title="Adicionar"
+          (click)="openDialog()"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{ 'max-width': '50px' }">
+        <button mat-raised-button color="primary" type="button"
+          title="Remover"
+          (click)="$event.stopPropagation(); unsetIncidentType(row.id)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"
+      matRipple matRippleColor="#fff4"
+      (click)="openDialog(row.id)"
+    ></mat-row>
   </table>
 
-  <mat-paginator #paginator
-    *ngIf="res"
-    (page)="getIncidentTypes($event.pageIndex + 1)"
-    [length]="res.meta.total"
-    [pageIndex]="res.meta.current_page - 1"
-    [pageSize]="res.meta.per_page">
-  </mat-paginator>
+  <div id="bottom-section">
+    <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+    <mat-paginator #paginator
+        *ngIf="res"
+        (page)="getIncidentTypes($event.pageIndex + 1)"
+        [hidePageSize]="true"
+        [length]="res.meta.total"
+        [pageIndex]="res.meta.current_page - 1"
+        [pageSize]="res.meta.per_page">
+    </mat-paginator>
+  </div>
 </div>
-<mat-spinner *ngIf="!res"></mat-spinner>
