@@ -10,6 +10,8 @@ import { ApiInterceptor } from './core/interceptors/api.interceptor';
 import { NavModule } from './core/layout/nav/nav.module';
 import { LocationModule } from './features/location/location.module';
 import { IncidentModule } from './features/incident/incident.module';
+import { HomeMapComponent } from './features/home/home-map/home-map.component';
+import { HomeModule } from './features/home/home.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { IncidentModule } from './features/incident/incident.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    HomeModule,
     NavModule,
     IncidentTypeModule,
     LocationModule,
