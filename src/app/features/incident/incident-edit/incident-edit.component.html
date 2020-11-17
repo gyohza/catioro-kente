@@ -33,7 +33,7 @@
               [matAutocomplete]="locationAuto"
               (focus)="locationInput.select()"
               (click)="locationInput.select()"
-              (keyup)="getLocations({ delay: 0, search: locationInput.value })"
+              (keyup)="getLocations({ delay: 400, search: locationInput.value })"
             >
             <mat-autocomplete #locationAuto [displayWith]="selectedLocation">
               <mat-option diameter="25" *ngIf="!locationList">
