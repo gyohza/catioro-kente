@@ -43,7 +43,7 @@ export class IncidentEditComponent implements OnInit {
     search?: string,
   }) {
     window.clearTimeout(this.locationTimeout);
-    window.setTimeout(() => {
+    this.locationTimeout = window.setTimeout(() => {
       this.locationList = null;
       this.LocationSvc.getLocations({ search: options?.search || ''}).subscribe(
         res => this.locationList = res.data
