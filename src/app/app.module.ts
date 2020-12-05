@@ -10,12 +10,14 @@ import { ApiInterceptor } from './core/interceptors/api.interceptor';
 import { NavModule } from './core/layout/nav/nav.module';
 import { LocationModule } from './features/location/location.module';
 import { IncidentModule } from './features/incident/incident.module';
-import { HomeMapComponent } from './features/home/home-map/home-map.component';
 import { HomeModule } from './features/home/home.module';
+import { OcsardpEditComponent } from './features/o-cara-subiu-a-rua-de-pe/ocsardp-edit/ocsardp-edit.component';
+import { OCaraSubiuARuaDePeModule } from './features/o-cara-subiu-a-rua-de-pe/o-cara-subiu-a-rua-de-pe.module';
 
 @NgModule({
   declarations: [
     AppComponent,
+    OcsardpEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,6 +29,7 @@ import { HomeModule } from './features/home/home.module';
     IncidentTypeModule,
     LocationModule,
     IncidentModule,
+    OCaraSubiuARuaDePeModule,
   ],
   providers: [
     {
